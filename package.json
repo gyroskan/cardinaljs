@@ -1,0 +1,30 @@
+{
+  "name": "cardinaljs",
+  "version": "1.0.0",
+  "description": "A library to interact with Cardinal API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gyroskan/cardinaljs.git"
+  },
+  "keywords": [
+    "api",
+    "node",
+    "cardinal"
+  ],
+  "author": "Baptiste Nehmé <gyroskan@gmail.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/gyroskan/cardinaljs/issues"
+  },
+  "homepage": "https://github.com/gyroskan/cardinaljs#readme",
+  "dependencies": {
+    "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.30.0"
+  }
+}
