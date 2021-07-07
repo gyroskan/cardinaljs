@@ -82,6 +82,18 @@ class MemberManager {
         }
         return memb;
     }
+
+    /**
+     * Reset all the members of the guild. (whether cached or not)
+     */
+    async reset() {
+        try {
+            await this.client.api.request(`/guilds/${this.guildID}/reset`, 'POST');
+            this.cache.clear();
+        } catch (err) {
+            console.error(err);
+        }
+    }
 }
 
 module.exports = MemberManager;

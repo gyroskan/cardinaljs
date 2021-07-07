@@ -117,6 +117,20 @@ class Member {
         await _client.api.request(`/guild/${this.guildID}/${this.memberID}`, 'DELETE');
         return this.guild.members.cache.delete(this.memberID);
     }
+
+    /**
+     * Reset all values of the member.
+     */
+    reset() {
+        return new Promise((resolve, reject) => {
+            _client.api.request(`/guild/${this.guildID}/${this.memberID}/reset`, 'POST').then(m => {
+                Object.assign(this, m);
+                resolve(this);
+            }).catch(err => {
+                reject(err);
+            });
+        });
+    }
 }
 
 
