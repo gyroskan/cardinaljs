@@ -1,5 +1,7 @@
+/* eslint-disable */
 const Client = require("./client");
 const Guild = require("./guild");
+/* eslint-enable */
 
 class GuildManager {
     /**

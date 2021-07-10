@@ -68,31 +68,34 @@ class MemberManager {
      * @param {?number} member.left The number of time this member left the guild.
      * @param {?number} member.xp The xp of the member.
      * @param {?number} member.level The level of the member.
-     * @returns {?Member} The member if it was created.
+     * @returns {Promise<Member, Error>} The member if it was created.
      */
     async create(member) {
         const memb = new Member(member, this.guild, this.client);
-        try {
-            const resp = await this.client.api.request(`/guilds/${this.guildID}/members/`, 'POST', memb);
-            Object.assign(memb, resp);
-            this.cache.set(memb.memberID, memb);
-        } catch (err) {
-            console.error(err);
-            return undefined;
-        }
-        return memb;
+        return new Promise((resolve, reject) => {
+            this.client.api.request(`/guilds/${this.guildID}/members/`, 'POST', memb)
+                .then(resp => {
+                    Object.assign(memb, resp);
+                    this.cache.set(memb.memberID, memb);
+                    resolve(memb);
+                })
+                .catch(reject);
+        });
     }
 
     /**
-     * Reset all the members of the guild. (whether cached or not)
+     * Reset all the members part of this guild. (whether cached or not)
+     * @returns {Promise<Guild, Error>} The guild of the members.
      */
-    async reset() {
-        try {
-            await this.client.api.request(`/guilds/${this.guildID}/reset`, 'POST');
-            this.cache.clear();
-        } catch (err) {
-            console.error(err);
-        }
+    resetMembers() {
+        return new Promise((resolve, reject) => {
+            this.client.api.request(`guilds/${this.guildID}/members/reset`, 'POST')
+                .then(() => {
+                    this.cache.clear();
+                    resolve(this.guild);
+                })
+                .catch(reject);
+        });
     }
 }
 
