@@ -79,6 +79,15 @@ class Member {
     }
 
     /**
+    * The ID of this member
+    * @type {Snowflake}
+    * @readonly
+    */
+    get id() {
+        return this.memberID;
+    }
+
+    /**
      * Add 1 to left property
      */
     addLeft() {
@@ -114,8 +123,11 @@ class Member {
      * Delete the member.
      */
     async delete() {
-        await _client.api.request(`/guild/${this.guildID}/${this.memberID}`, 'DELETE');
-        return this.guild.members.cache.delete(this.memberID);
+        return new Promise((resolve, reject) => {
+            _client.api.request(`/guild/${this.guildID}/${this.memberID}`, 'DELETE')
+                .then(() => resolve(this.guild.members.cache.delete(this.memberID)))
+                .catch(err => reject(err));
+        });
     }
 
     /**
@@ -123,12 +135,13 @@ class Member {
      */
     reset() {
         return new Promise((resolve, reject) => {
-            _client.api.request(`/guild/${this.guildID}/${this.memberID}/reset`, 'POST').then(m => {
-                Object.assign(this, m);
-                resolve(this);
-            }).catch(err => {
-                reject(err);
-            });
+            _client.api.request(`/guild/${this.guildID}/${this.memberID}/reset`, 'POST')
+                .then(m => {
+                    Object.assign(this, m);
+                    resolve(this);
+                }).catch(err => {
+                    reject(err);
+                });
         });
     }
 }
