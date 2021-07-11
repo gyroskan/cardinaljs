@@ -46,6 +46,35 @@ class GuildManager {
             return undefined;
         }
     }
+
+    /**
+     * Create a new guild.
+     * @param {Object} guild
+     * @param {string} guild.guildName
+     * @param {?Snowflake} guild.reportChannel
+     * @param {?Snowflake} guild.welcomeChannel
+     * @param {?string} guild.welcomeMsg
+     * @param {?string} guild.privateWelcomeMsg
+     * @param {?Snowflake} guild.lvlChannel
+     * @param {?number} guild.lvlReplace
+     * @param {?number} guild.lvlResponse
+     * @param {?string} guild.disabledCommands
+     * @param {?boolean} guild.allowModeration
+     * @param {?number} guild.maxWarns
+     * @param {?number} guild.banTime
+     */
+    create(guild) {
+        const g = new Guild(guild, this.client);
+        return new Promise((resolve, reject) => {
+            this.client.api.request('/guilds/', 'POST', g)
+                .then(resp => {
+                    Object.assign(g, resp);
+                    this.cache.set(g.id, g);
+                    resolve(g);
+                })
+                .catch(reject);
+        });
+    }
 }
 
 module.exports = GuildManager;
