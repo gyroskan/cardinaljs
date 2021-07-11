@@ -2,12 +2,12 @@ const Api = require('./api');
 const GuildManager = require('./guildManager');
 
 class Client {
-    constructor(token = "") {
+    constructor(token = '') {
         /**
          * The token used for cardinal API.
          * @type {?string}
          */
-        this.token = undefined;
+        this.token = token;
 
         /**
          * The object used to fetch the api.
