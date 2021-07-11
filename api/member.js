@@ -1,5 +1,6 @@
 /* eslint-disable*/
 const Api = require('./api');
+const BanManager = require('./banManager');
 const Client = require('./client');
 const Guild = require('./guild');
 /* eslint-enable*/
@@ -76,6 +77,12 @@ class Member {
          * @readonly
          */
         this.level = member.level ? member.level : 0;
+
+        /**
+         * The ban manager of this member.
+         * @type {BanManager}
+         */
+        this.bans = new BanManager(this.client, this);
     }
 
     /**
