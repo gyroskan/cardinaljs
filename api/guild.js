@@ -5,11 +5,6 @@ const MemberManager = require("./memberManager");
 const RoleManager = require("./roleManager");
 /* eslint-enable */
 
-/**
- * @type {Client}
- */
-let _client = undefined;
-
 class Guild {
     /**
      * @param {Client} client The client connected to cardinal api.
@@ -28,8 +23,11 @@ class Guild {
      * @param {?number} guild.banTime
      */
     constructor(guild, client) {
-        _client = client;
-        if (client === undefined) {
+        /**
+         * @type {Client}
+         */
+        this.client = client;
+        if (!client) {
             return undefined;
         }
 
@@ -132,7 +130,7 @@ class Guild {
          * @type {MemberManager}
          * @readonly
          */
-        this.members = new MemberManager(_client, this);
+        this.members = new MemberManager(this.client, this);
 
 
         /**
@@ -140,7 +138,7 @@ class Guild {
          * @type {RoleManager}
          * @readonly
          */
-        this.roles = new RoleManager(_client, this);
+        this.roles = new RoleManager(this.client, this);
     }
 
     /**
@@ -179,7 +177,7 @@ class Guild {
      */
     edit(data) {
         return new Promise((resolve, reject) => {
-            _client.api.request(`/guilds/${this.guildID}`, 'PATCH', data)
+            this.client.api.request(`/guilds/${this.guildID}`, 'PATCH', data)
                 .then(guild => {
                     Object.assign(this, guild);
                     resolve(this);
@@ -194,7 +192,7 @@ class Guild {
      */
     reset() {
         return new Promise((resolve, reject) => {
-            _client.api.request(`guilds/${this.guildID}/reset`, 'POST')
+            this.client.api.request(`guilds/${this.guildID}/reset`, 'POST')
                 .then(guild => {
                     Object.assign(this, guild);
                     resolve(this);
@@ -209,8 +207,8 @@ class Guild {
      */
     delete() {
         return new Promise((resolve, reject) => {
-            _client.api.request(`/guilds/${this.guildID}`, 'DELETE')
-                .then(() => resolve(_client.guilds.cache.delete(this.guildID)))
+            this.client.api.request(`/guilds/${this.guildID}`, 'DELETE')
+                .then(() => resolve(this.client.guilds.cache.delete(this.guildID)))
                 .catch(reject);
         });
     }

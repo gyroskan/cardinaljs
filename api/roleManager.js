@@ -72,7 +72,7 @@ class RoleManager {
      * @param {?number} role.xpBlacklisted
      * @returns {Promise<Role, Error>} The role if it was created.
      */
-    async create(role) {
+    create(role) {
         const rl = new Role(role, this.guild, this.client);
         return new Promise((resolve, reject) => {
             this.client.api.request(`/guilds/${this.guildID}/roles/`, 'POST', rl)

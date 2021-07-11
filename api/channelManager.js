@@ -70,7 +70,7 @@ class ChannelManager {
      * @param {?number} channel.xpBlacklisted
      * @returns {Promise<channel, Error>} The channel if it was created.
      */
-    async create(channel) {
+    create(channel) {
         const ch = new Channel(channel, this.guild, this.client);
         return new Promise((resolve, reject) => {
             this.client.api.request(`/guilds/${this.guildID}/channels/`, 'POST', ch)

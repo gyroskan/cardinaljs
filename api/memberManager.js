@@ -72,7 +72,7 @@ class MemberManager {
      * @param {?number} member.level The level of the member.
      * @returns {Promise<Member, Error>} The member if it was created.
      */
-    async create(member) {
+    create(member) {
         const memb = new Member(member, this.guild, this.client);
         return new Promise((resolve, reject) => {
             this.client.api.request(`/guilds/${this.guildID}/members/`, 'POST', memb)

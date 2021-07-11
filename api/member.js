@@ -5,11 +5,6 @@ const Client = require('./client');
 const Guild = require('./guild');
 /* eslint-enable*/
 
-/**
- * @type {Client}
- */
-let _client = undefined;
-
 class Member {
     /**
      * Create a new member.
@@ -24,8 +19,11 @@ class Member {
      * @returns {Member}
      */
     constructor(member, guild, client) {
-        _client = client;
-        if (client == undefined) {
+        /**
+        * @type {Client}
+        */
+        this.client = client;
+        if (!client) {
             return undefined;
         }
 
@@ -99,7 +97,7 @@ class Member {
      */
     addLeft() {
         return new Promise((resolve, reject) => {
-            _client.api.request(`/guild/${this.guildID}/members/${this.memberID}`, 'PATCH', { left: this.left++ })
+            this.client.api.request(`/guild/${this.guildID}/members/${this.memberID}`, 'PATCH', { left: this.left++ })
                 .then(m => {
                     Object.assign(this, m);
                     resolve(this);
@@ -114,7 +112,7 @@ class Member {
      */
     addXP(amount) {
         return new Promise((resolve, reject) => {
-            _client.api.request(`/guild/${this.guildID}/members/${this.memberID}`, 'PATCH', {
+            this.client.api.request(`/guild/${this.guildID}/members/${this.memberID}`, 'PATCH', {
                 xp: this.xp + amount,
                 level: this.level + (this.xp + amount >= getXp(this.level))
             }).then(m => {
@@ -131,7 +129,7 @@ class Member {
      */
     delete() {
         return new Promise((resolve, reject) => {
-            _client.api.request(`/guild/${this.guildID}/members/${this.memberID}`, 'DELETE')
+            this.client.api.request(`/guild/${this.guildID}/members/${this.memberID}`, 'DELETE')
                 .then(() => resolve(this.guild.members.cache.delete(this.memberID)))
                 .catch(err => reject(err));
         });
@@ -142,7 +140,7 @@ class Member {
      */
     reset() {
         return new Promise((resolve, reject) => {
-            _client.api.request(`/guild/${this.guildID}/members/${this.memberID}/reset`, 'POST')
+            this.client.api.request(`/guild/${this.guildID}/members/${this.memberID}/reset`, 'POST')
                 .then(m => {
                     Object.assign(this, m);
                     resolve(this);

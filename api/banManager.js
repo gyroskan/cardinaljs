@@ -49,7 +49,7 @@ class BanManager {
         }
 
         try {
-            const res = await this.client.api.request(`/guilds/${this.guildID}/members/${this.memberID}/bans/${id}`, 'GET');
+            const res = await this.client.api.request(`/guilds/${this.member.guildID}/members/${this.memberID}/bans/${id}`, 'GET');
             ban = new Ban(res, this.member, this.client);
             this.cache.set(ban.banID, ban);
             return ban;
@@ -66,15 +66,16 @@ class BanManager {
      * Create a new ban for this member.
      * @param {Object} ban The ban from the API.
      * @param {Snowflake} ban.banID The ID of the ban.
+     * @param {?Snowflake} ban.bannerID The ID of the banner.
      * @param {?Date} ban.bannedAt
      * @param {?string} ban.banReason
      * @param {?boolean} ban.autoBan
      * @returns {Promise<Ban, Error>} The ban if it was created.
      */
-    async create(ban) {
+    create(ban) {
         const b = new Ban(ban, this.guild, this.client);
         return new Promise((resolve, reject) => {
-            this.client.api.request(`/guilds/${this.guildID}/members/${this.memberID}/bans/`, 'POST', b)
+            this.client.api.request(`/guilds/${this.member.guildID}/members/${this.memberID}/bans/`, 'POST', b)
                 .then(resp => {
                     Object.assign(b, resp);
                     this.cache.set(b.banID, b);
