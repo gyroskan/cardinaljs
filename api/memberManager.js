@@ -2,6 +2,7 @@
 const Member = require('./member');
 const Guild = require('./guild');
 const Client = require('./client');
+const APIError = require('./apiError');
 /* eslint-enable */
 
 class MemberManager {
@@ -50,14 +51,15 @@ class MemberManager {
         try {
             const res = await this.client.api.request(`/guilds/${this.guildID}/members/${id}`, 'GET');
             member = new Member(res, this.guild, this.client);
+            this.cache.set(member.memberID, member);
+            return member;
         }
         catch (err) {
-            console.error(err);
+            if (!(err instanceof APIError) || err.code != 404) {
+                console.error(err);
+            }
+            return undefined;
         }
-        if (member) {
-            this.cache.set(member.memberID, member);
-        }
-        return member;
     }
 
     /**

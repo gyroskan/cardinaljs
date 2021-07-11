@@ -14,7 +14,7 @@ class Role {
      * @param {?boolean} role.xpBlacklisted
      * @param {Guild} guild The guild this role is part of.
      * @param {Client} client The client used to connect to the API.
-     * @returns 
+     * @returns The created role.
      */
     constructor(role, guild, client) {
         /**

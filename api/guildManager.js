@@ -1,4 +1,5 @@
 /* eslint-disable */
+const APIError = require("./apiError");
 const Client = require("./client");
 const Guild = require("./guild");
 /* eslint-enable */
@@ -32,11 +33,18 @@ class GuildManager {
             return guild;
         }
 
-        guild = await this.client.api.request(`/guilds/${id}`, 'GET');
-        if (guild) {
+        try {
+            const res = await this.client.api.request(`/guilds/${id}`, 'GET');
+            guild = new Guild(res, this.client);
             this.cache.set(guild.guildID, guild);
+            return guild;
         }
-        return guild;
+        catch (err) {
+            if (!(err instanceof APIError) || err.code != 404) {
+                console.error(err);
+            }
+            return undefined;
+        }
     }
 }
 

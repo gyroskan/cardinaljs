@@ -2,6 +2,7 @@
 const Guild = require('./guild');
 const Client = require('./client');
 const Role = require('./role');
+const APIError = require('./apiError');
 /* eslint-enable */
 
 class RoleManager {
@@ -50,14 +51,15 @@ class RoleManager {
         try {
             const res = await this.client.api.request(`/guilds/${this.guildID}/roles/${id}`, 'GET');
             role = new Role(res, this.guild, this.client);
+            this.cache.set(role.roleID, role);
+            return role;
         }
         catch (err) {
-            console.error(err);
+            if (!(err instanceof APIError) || err.code != 404) {
+                console.error(err);
+            }
+            return undefined;
         }
-        if (role) {
-            this.cache.set(role.roleID, role);
-        }
-        return role;
     }
 
     /**
