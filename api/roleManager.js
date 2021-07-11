@@ -7,9 +7,9 @@ const APIError = require('./apiError');
 
 class RoleManager {
     /**
-     * Create a new MemberManager for the guild.
+     * Create a new RoleManager for the guild.
      * @param {Client} client The client to connect to the API.
-     * @param {Guild} guild The guild of the members.
+     * @param {Guild} guild The guild of the roles.
      */
     constructor(client, guild) {
         /**
@@ -40,7 +40,7 @@ class RoleManager {
     /**
      * resolve returns the role if it is in the database.
      * @param {string} id Id of the role.
-     * @returns {?Member} The resolved role.
+     * @returns {?Role} The resolved role.
      */
     async resolve(id) {
         let role = this.cache.get(id);
@@ -63,7 +63,7 @@ class RoleManager {
     }
 
     /**
-     * Create a new member for this guild.
+     * Create a new role for this guild.
      * @param {Object} role The role from the API.
      * @param {Snowflake} role.roleID The ID of the role.
      * @param {?Date} role.isDefault 
@@ -75,7 +75,7 @@ class RoleManager {
     async create(role) {
         const rl = new Role(role, this.guild, this.client);
         return new Promise((resolve, reject) => {
-            this.client.api.request(`/guilds/${this.guildID}/members/`, 'POST', rl)
+            this.client.api.request(`/guilds/${this.guildID}/roles/`, 'POST', rl)
                 .then(resp => {
                     Object.assign(rl, resp);
                     this.cache.set(rl.roleID, rl);

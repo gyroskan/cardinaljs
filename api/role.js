@@ -5,7 +5,7 @@ const Client = require('./client');
 
 class Role {
     /**
-     * 
+     * Create a new role.
      * @param {Object} role
      * @param {Snowflake} role.roleID
      * @param {?boolean} role.isDefault
@@ -79,10 +79,10 @@ class Role {
     /**
      * Updates the guild with new values.
      * @param data
-     * @param data.isDefault
-     * @param data.reward
-     * @param data.ignored
-     * @param data.xpBlacklisted
+     * @param {boolean} data.isDefault
+     * @param {number } data.reward
+     * @param {boolean} data.ignored
+     * @param {boolean} data.xpBlacklisted
      */
     edit(data) {
         return new Promise((resolve, reject) => {
