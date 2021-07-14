@@ -29,7 +29,7 @@ class Client {
     /**
      * Log the client to the API.
      * @param {string} [token=this.token] Token of the user to log in.
-     * @returns {string} Token of the user.
+     * @returns {Promise<string>} Returns a promise with the token used to connect.
      */
     async login(token = this.token) {
         this.token = token;
