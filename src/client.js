@@ -2,6 +2,10 @@ const Api = require('./api');
 const GuildManager = require('./guildManager');
 
 class Client {
+    /**
+     * Create a new client to interact with cardinal API.
+     * @param {string} token The token used to connect to Cardinal API.
+     */
     constructor(token = '') {
         /**
          * The token used for cardinal API.
