@@ -6,16 +6,17 @@ const Client = require('./client');
 class Channel {
     /**
      * Create a new channel.
-     * @param {Object} channel
-     * @param {Snowflake} channel.channelID
-     * @param {?boolean} channel.ignored
-     * @param {?boolean} channel.xpBlacklisted
+     * @param {Object} channel The channel object.
+     * @param {Snowflake} channel.channelID The channel id.
+     * @param {?boolean} channel.ignored Wether the channel must be ignored.
+     * @param {?boolean} channel.xpBlacklisted Wether to disable xp in this channel.
      * @param {Guild} guild The guild this channel is part of.
      * @param {Client} client The client used to connect to the API.
      * @returns The created channel.
      */
     constructor(channel, guild, client) {
         /**
+         * The client used to connect to the API.
          * @type {Client}
          */
         this.client = client;
@@ -64,9 +65,9 @@ class Channel {
 
     /**
      * Updates the guild with new values.
-     * @param {Object} data
-     * @param {boolean} data.ignored
-     * @param {boolean} data.xpBlacklisted
+     * @param {Object} data The patch values object.
+     * @param {boolean} data.ignored Wether the channel must be ignored.
+     * @param {boolean} data.xpBlacklisted Wether to disable xp in this channel.
      */
     edit(data) {
         return new Promise((resolve, reject) => {

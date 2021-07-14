@@ -6,12 +6,12 @@ const Client = require('./client');
 class Role {
     /**
      * Create a new role.
-     * @param {Object} role
-     * @param {Snowflake} role.roleID
-     * @param {?boolean} role.isDefault
-     * @param {?number} role.reward
-     * @param {?boolean} role.ignored
-     * @param {?boolean} role.xpBlacklisted
+     * @param {Object} role The role object.
+     * @param {Snowflake} role.roleID The id of the role.
+     * @param {?boolean} role.isDefault Wether to give this role to new members or not.
+     * @param {?number} role.reward The level when this role is given as reward. (0 means never).
+     * @param {?boolean} role.ignored Wether cardinal bot ignore this role or not.
+     * @param {?boolean} role.xpBlacklisted Wether members of this role are blocked from xp leveling or not.
      * @param {Guild} guild The guild this role is part of.
      * @param {Client} client The client used to connect to the API.
      * @returns The created role.
@@ -78,11 +78,11 @@ class Role {
 
     /**
      * Updates the guild with new values.
-     * @param data
-     * @param {boolean} data.isDefault
-     * @param {number } data.reward
-     * @param {boolean} data.ignored
-     * @param {boolean} data.xpBlacklisted
+     * @param {Object} data The patch values object.
+     * @param {boolean} data.isDefault Wether to give this role to new members or not.
+     * @param {number } data.reward The level when this role is given as reward. (0 means never).
+     * @param {boolean} data.ignored Wether cardinal bot ignore this role or not.
+     * @param {boolean} data.xpBlacklisted Wether members of this role are blocked from xp leveling or not.
      */
     edit(data) {
         return new Promise((resolve, reject) => {

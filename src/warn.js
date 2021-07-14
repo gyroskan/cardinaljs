@@ -6,11 +6,11 @@ const Member = require('./member');
 class Warn {
     /**
      * Create a new warn.
-     * @param {Object} warn
-     * @param {Snowflake} warn.warnID
-     * @param {?Snowflake} warn.warnnerID
-     * @param {?Date} warn.warnnedAt
-     * @param {?string} warn.warnReason
+     * @param {Object} warn The warn object.
+     * @param {Snowflake} warn.warnID The id of the warn.
+     * @param {?Snowflake} warn.warnnerID The id of the warnner.
+     * @param {?Date} warn.warnnedAt The date when the member was warnned.
+     * @param {?string} warn.warnReason The reason of the warn.
      * @param {Member} member The member this warn is part of.
      * @param {Client} client The client used to connect to the API.
      * @returns The created warn.

@@ -3,6 +3,12 @@ const fetch = require('node-fetch');
 const APIError = require('./apiError');
 
 class Api {
+    /**
+     * Create an instance used to make request to cardinal API.
+     * @param {string} token The token used to connect to cardinal API.
+     * @param {string} apiurl The url to cardinal API (default is last version).
+     * @param {number} maxAttempt The max attempt to connect to the API.
+     */
     constructor(token, apiurl = APIPATH, maxAttempt = 3) {
         /**
          * The token used for cardinal API.

@@ -67,9 +67,9 @@ class BanManager {
      * @param {Object} ban The ban from the API.
      * @param {Snowflake} ban.banID The ID of the ban.
      * @param {?Snowflake} ban.bannerID The ID of the banner.
-     * @param {?Date} ban.bannedAt
-     * @param {?string} ban.banReason
-     * @param {?boolean} ban.autoBan
+     * @param {?Date} ban.bannedAt The date of the ban.
+     * @param {?string} ban.banReason The reason of the ban.
+     * @param {?boolean} ban.autoBan Wether it was a ban after max warns or not.
      * @returns {Promise<Ban, Error>} The ban if it was created.
      */
     create(ban) {

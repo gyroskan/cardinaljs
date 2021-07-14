@@ -66,10 +66,10 @@ class RoleManager {
      * Create a new role for this guild.
      * @param {Object} role The role from the API.
      * @param {Snowflake} role.roleID The ID of the role.
-     * @param {?Date} role.isDefault 
-     * @param {?number} role.reward
-     * @param {?number} role.ignored
-     * @param {?number} role.xpBlacklisted
+     * @param {?Date} role.isDefault Wether to give this role to new members or not.
+     * @param {?number} role.reward The level when this role is given as reward. (0 means never).
+     * @param {?number} role.ignored Wether cardinal bot ignore this role or not.
+     * @param {?number} role.xpBlacklisted Wether members of this role are blocked from xp leveling or not.
      * @returns {Promise<Role, Error>} The role if it was created.
      */
     create(role) {

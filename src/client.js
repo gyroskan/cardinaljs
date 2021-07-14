@@ -34,14 +34,8 @@ class Client {
     async login(token = this.token) {
         this.token = token;
         this.api = new Api(token);
-        // eslint-disable-next-line no-useless-catch
-        try {
-            await this.api.connect();
-            return this.token;
-        }
-        catch (e) {
-            throw e;
-        }
+        await this.api.connect();
+        return this.token;
     }
 }
 

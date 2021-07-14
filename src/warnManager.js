@@ -67,8 +67,8 @@ class WarnManager {
      * @param {Object} warn The warn from the API.
      * @param {Snowflake} warn.warnID The ID of the warn.
      * @param {Snowflake} warn.warnnerID The ID of the warnner.
-     * @param {?Date} warn.warnnedAt
-     * @param {?string} warn.warnReason
+     * @param {?Date} warn.warnnedAt The date when the member was warnned.
+     * @param {?string} warn.warnReason The reason of the warn.
      * @returns {Promise<Warn, Error>} The warn if it was created.
      */
     create(warn) {

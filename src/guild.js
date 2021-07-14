@@ -8,22 +8,24 @@ const RoleManager = require("./roleManager");
 class Guild {
     /**
      * @param {Client} client The client connected to cardinal api.
-     * @param {Object} guild
-     * @param {string} guild.guildName
-     * @param {?Snowflake} guild.reportChannel
-     * @param {?Snowflake} guild.welcomeChannel
-     * @param {?string} guild.welcomeMsg
-     * @param {?string} guild.privateWelcomeMsg
-     * @param {?Snowflake} guild.lvlChannel
-     * @param {?number} guild.lvlReplace
-     * @param {?number} guild.lvlResponse
-     * @param {?string} guild.disabledCommands
-     * @param {?boolean} guild.allowModeration
-     * @param {?number} guild.maxWarns
-     * @param {?number} guild.banTime
+     * @param {Object} guild The guild object.
+     * @param {Snowflake} guild.guildID The ID of this guild.
+     * @param {string} guild.guildName The name of this guild.
+     * @param {?Snowflake} guild.reportChannel The channel used to send reports.
+     * @param {?Snowflake} guild.welcomeChannel The channel used to send welcome messages.
+     * @param {?string} guild.welcomeMsg The message send to new members.
+     * @param {?string} guild.privateWelcomeMsg The message send in DM to new members.
+     * @param {?Snowflake} guild.lvlChannel The channel where lvl up messages are sent.
+     * @param {?number} guild.lvlReplace Wether rewards are replaced on lvl up or not.
+     * @param {?number} guild.lvlResponse On which lvl does the bot send a lvl up message. (0 means never).
+     * @param {?string} guild.disabledCommands The list of names of disabled commands.
+     * @param {?boolean} guild.allowModeration Whether moderation commands are allowed or not.
+     * @param {?number} guild.maxWarns The number of warns before a member get banned. (0 means never get banned from warns).
+     * @param {?number} guild.banTime The number of days a ban last. (between 0 and 7).
      */
     constructor(guild, client) {
         /**
+         * The client used to connect to the API.
          * @type {Client}
          */
         this.client = client;
@@ -32,7 +34,7 @@ class Guild {
         }
 
         /**
-        * The ID of this guild
+        * The ID of this guild.
         * @type {Snowflake}
         * @readonly
         */
@@ -161,19 +163,19 @@ class Guild {
 
     /**
      * Updates the guild with new values.
-     * @param data
-     * @param data.guildName
-     * @param data.reportChannel
-     * @param data.welcomeChannel
-     * @param data.welcomeMsg
-     * @param data.privateWelcomeMsg
-     * @param data.lvlChannel
-     * @param data.lvlReplace
-     * @param data.lvlResponse
-     * @param data.disabledCommands
-     * @param data.allowModeration
-     * @param data.maxWarns
-     * @param data.banTime
+     * @param data The patch values object. 
+     * @param data.guildName The name of this guild.
+     * @param data.reportChannel The channel used to send reports.
+     * @param data.welcomeChannel The channel used to send welcome messages.
+     * @param data.welcomeMsg The message send to new members.
+     * @param data.privateWelcomeMsg The message send in DM to new members.
+     * @param data.lvlChannel The channel where lvl up messages are sent.
+     * @param data.lvlReplace Wether rewards are replaced on lvl up or not.
+     * @param data.lvlResponse On which lvl does the bot send a lvl up message. (0 means never).
+     * @param data.disabledCommands The list of names of disabled commands.
+     * @param data.allowModeration Whether moderation commands are allowed or not.
+     * @param data.maxWarns The number of warns before a member get banned. (0 means never get banned from warns).
+     * @param data.banTime The number of days a ban last. (between 0 and 7).
      */
     edit(data) {
         return new Promise((resolve, reject) => {

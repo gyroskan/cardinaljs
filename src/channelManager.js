@@ -66,8 +66,8 @@ class ChannelManager {
      * Create a new member for this guild.
      * @param {Object} channel The channel from the API.
      * @param {Snowflake} channel.channelID The ID of the channel.
-     * @param {?number} channel.ignored
-     * @param {?number} channel.xpBlacklisted
+     * @param {?number} channel.ignored Wether the channel must be ignored.
+     * @param {?number} channel.xpBlacklisted Wether to disable xp in this channel.
      * @returns {Promise<channel, Error>} The channel if it was created.
      */
     create(channel) {
