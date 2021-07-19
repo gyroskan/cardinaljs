@@ -11,6 +11,7 @@ class Guild {
      * @param {Object} guild The guild object.
      * @param {Snowflake} guild.guildID The ID of this guild.
      * @param {string} guild.guildName The name of this guild.
+     * @param {string} guild.prefix The prefix used for the discord bot .
      * @param {?Snowflake} guild.reportChannel The channel used to send reports.
      * @param {?Snowflake} guild.welcomeChannel The channel used to send welcome messages.
      * @param {?string} guild.welcomeMsg The message send to new members.
@@ -49,6 +50,12 @@ class Guild {
          * @readonly
          */
         this.guildName = guild.guildName;
+
+        /**
+         * The Prefix used for the discord Bot.
+         * @type {string}
+         */
+        this.prefix = guild.prefix;
 
 
         /**
@@ -165,6 +172,7 @@ class Guild {
      * Updates the guild with new values.
      * @param data The patch values object. 
      * @param data.guildName The name of this guild.
+     * @param data.prefix The prefix used for the discord bot.
      * @param data.reportChannel The channel used to send reports.
      * @param data.welcomeChannel The channel used to send welcome messages.
      * @param data.welcomeMsg The message send to new members.

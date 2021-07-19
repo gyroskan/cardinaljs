@@ -52,6 +52,7 @@ class GuildManager {
      * @param {Object} guild The guild object.
      * @param {Snowflake} guild.guildID The ID of this guild.
      * @param {string} guild.guildName The name of this guild.
+     * @param {string} guild.prefix The prefix used for the discord bot.
      * @param {?Snowflake} guild.reportChannel The channel used to send reports.
      * @param {?Snowflake} guild.welcomeChannel The channel used to send welcome messages.
      * @param {?string} guild.welcomeMsg The message send to new members.
@@ -63,6 +64,7 @@ class GuildManager {
      * @param {?boolean} guild.allowModeration Whether moderation commands are allowed or not.
      * @param {?number} guild.maxWarns The number of warns before a member get banned. (0 means never get banned from warns).
      * @param {?number} guild.banTime The number of days a ban last. (between 0 and 7).
+     * @returns {Promise<Guild, error>} The created guild.
      */
     create(guild) {
         const g = new Guild(guild, this.client);
