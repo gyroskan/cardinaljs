@@ -3,6 +3,7 @@ const Api = require("./api");
 const Client = require("./client");
 const MemberManager = require("./memberManager");
 const RoleManager = require("./roleManager");
+const ChannelManager = require("./channelManager");
 /* eslint-enable */
 
 class Guild {
@@ -148,6 +149,13 @@ class Guild {
          * @readonly
          */
         this.roles = new RoleManager(this.client, this);
+
+        /**
+         * The channel manager for this guild.
+         * @type {ChannelManager}
+         * @readonly
+         */
+        this.channels = new ChannelManager(this.client, this);
     }
 
     /**

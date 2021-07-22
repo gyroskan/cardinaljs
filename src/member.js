@@ -1,6 +1,7 @@
 /* eslint-disable*/
 const Api = require('./api');
 const BanManager = require('./banManager');
+const WarnManager = require('./warnManager');
 const Client = require('./client');
 const Guild = require('./guild');
 /* eslint-enable*/
@@ -81,6 +82,12 @@ class Member {
          * @type {BanManager}
          */
         this.bans = new BanManager(this.client, this);
+
+        /**
+         * The warn manager of this member.
+         * @type {WarnManager}
+         */
+        this.warns = new WarnManager(this.client, this);
     }
 
     /**
