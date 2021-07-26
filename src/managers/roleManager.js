@@ -84,6 +84,21 @@ class RoleManager {
                 .catch(reject);
         });
     }
+
+    /**
+     * Get all roles that are rewards for the specified level.
+     * @param {number} lvl The level of the rewards.
+     * @returns {Array<Role>} The rewards.
+     */
+    rewards(lvl) {
+        return new Promise((resolve, reject) => {
+            this.client.api.request(`/guilds/${this.guildID}/roles/?reward=${lvl}`, 'GET')
+                .then(resp => {
+                    resolve(resp);
+                })
+                .catch(reject);
+        });
+    }
 }
 
 module.exports = RoleManager;
