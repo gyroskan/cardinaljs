@@ -1,8 +1,8 @@
 /* eslint-disable */
-const Member = require('./member');
-const Client = require('./client');
-const Ban = require('./ban');
-const APIError = require('./apiError');
+const Member = require('../structures/member');
+const Client = require('../structures/client');
+const Ban = require('../structures/ban');
+const APIError = require('../api/apiError');
 /* eslint-enable */
 
 class BanManager {
@@ -33,6 +33,7 @@ class BanManager {
         /**
          * The map containing all tracked bans.
          * @type {Map<string, Ban>}
+         * @readonly
          */
         this.cache = new Map();
     }
@@ -40,7 +41,7 @@ class BanManager {
     /**
      * resolve returns the ban if it is in the database.
      * @param {string} id Id of the ban.
-     * @returns {?Ban} The resolved ban.
+     * @returns {Promise<Ban | undefined>} The resolved ban.
      */
     async resolve(id) {
         let ban = this.cache.get(id);
@@ -66,11 +67,11 @@ class BanManager {
      * Create a new ban for this member.
      * @param {Object} ban The ban from the API.
      * @param {Snowflake} ban.banID The ID of the ban.
-     * @param {?Snowflake} ban.bannerID The ID of the banner.
-     * @param {?Date} ban.bannedAt The date of the ban.
-     * @param {?string} ban.banReason The reason of the ban.
-     * @param {?boolean} ban.autoBan Wether it was a ban after max warns or not.
-     * @returns {Promise<Ban, Error>} The ban if it was created.
+     * @param {?Snowflake} [ban.bannerID] The ID of the banner.
+     * @param {?Date} [ban.bannedAt] The date of the ban.
+     * @param {?string} [ban.banReason] The reason of the ban.
+     * @param {boolean} [ban.autoBan] Wether it was a ban after max warns or not.
+     * @returns {Promise<Ban>} The ban if it was created.
      */
     create(ban) {
         const b = new Ban(ban, this.guild, this.client);

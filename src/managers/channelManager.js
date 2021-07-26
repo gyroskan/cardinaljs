@@ -1,8 +1,8 @@
 /* eslint-disable */
-const Guild = require('./guild');
-const Client = require('./client');
-const Channel = require('./channel');
-const APIError = require('./apiError');
+const Guild = require('../structures/guild');
+const Client = require('../structures/client');
+const Channel = require('../structures/channel');
+const APIError = require('../api/apiError');
 /* eslint-enable */
 
 class ChannelManager {
@@ -33,6 +33,7 @@ class ChannelManager {
         /**
          * The map containing all tracked channels.
          * @type {Map<string, Channel>}
+         * @readonly
          */
         this.cache = new Map();
     }
@@ -40,7 +41,7 @@ class ChannelManager {
     /**
      * resolve returns the channel if it is in the database.
      * @param {string} id Id of the channel.
-     * @returns {?Channel} The resolved channel.
+     * @returns {Promise<Channel | undefined>} The resolved channel.
      */
     async resolve(id) {
         let channel = this.cache.get(id);
@@ -66,9 +67,9 @@ class ChannelManager {
      * Create a new member for this guild.
      * @param {Object} channel The channel from the API.
      * @param {Snowflake} channel.channelID The ID of the channel.
-     * @param {?number} channel.ignored Wether the channel must be ignored.
-     * @param {?number} channel.xpBlacklisted Wether to disable xp in this channel.
-     * @returns {Promise<channel, Error>} The channel if it was created.
+     * @param {number} [channel.ignored] Wether the channel must be ignored.
+     * @param {number} [channel.xpBlacklisted] Wether to disable xp in this channel.
+     * @returns {Promise<Channel>} The channel if it was created.
      */
     create(channel) {
         const ch = new Channel(channel, this.guild, this.client);

@@ -1,8 +1,8 @@
 /* eslint-disable */
-const Guild = require('./guild');
-const Client = require('./client');
-const Role = require('./role');
-const APIError = require('./apiError');
+const Guild = require('../structures/guild');
+const Client = require('../structures/client');
+const Role = require('../structures/role');
+const APIError = require('../api/apiError');
 /* eslint-enable */
 
 class RoleManager {
@@ -40,7 +40,7 @@ class RoleManager {
     /**
      * resolve returns the role if it is in the database.
      * @param {string} id Id of the role.
-     * @returns {?Role} The resolved role.
+     * @returns {Promise<Role | undefined>} The resolved role.
      */
     async resolve(id) {
         let role = this.cache.get(id);
@@ -66,11 +66,11 @@ class RoleManager {
      * Create a new role for this guild.
      * @param {Object} role The role from the API.
      * @param {Snowflake} role.roleID The ID of the role.
-     * @param {?Date} role.isDefault Wether to give this role to new members or not.
-     * @param {?number} role.reward The level when this role is given as reward. (0 means never).
-     * @param {?number} role.ignored Wether cardinal bot ignore this role or not.
-     * @param {?number} role.xpBlacklisted Wether members of this role are blocked from xp leveling or not.
-     * @returns {Promise<Role, Error>} The role if it was created.
+     * @param {boolean} [role.isDefault] Wether to give this role to new members or not.
+     * @param {number} [role.reward] The level when this role is given as reward. (0 means never).
+     * @param {boolean} [role.ignored] Wether cardinal bot ignore this role or not.
+     * @param {boolean} [role.xpBlacklisted] Wether members of this role are blocked from xp leveling or not.
+     * @returns {Promise<Role>} The role if it was created.
      */
     create(role) {
         const rl = new Role(role, this.guild, this.client);

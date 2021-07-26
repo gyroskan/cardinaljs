@@ -8,16 +8,17 @@ class Ban {
      * Create a new ban.
      * @param {Object} ban The ban object.
      * @param {Snowflake} ban.banID The id of the member banned.
-     * @param {?Snowflake} ban.bannerID The id of the banner.
-     * @param {?Date} ban.bannedAt The date of the ban.
-     * @param {?string} ban.banReason The reason of the ban.
-     * @param {?boolean} ban.autoBan Wether it was a ban after max warns or not.
+     * @param {?Snowflake} [ban.bannerID] The id of the banner.
+     * @param {?Date} [ban.bannedAt] The date of the ban.
+     * @param {?string} [ban.banReason] The reason of the ban.
+     * @param {boolean} [ban.autoBan] Wether it was a ban after max warns or not.
      * @param {Member} member The member this ban is part of.
      * @param {Client} client The client used to connect to the API.
      * @returns The created ban.
      */
     constructor(ban, member, client) {
         /**
+         * The client to connect to the API.
          * @type {Client}
          */
         this.client = client;

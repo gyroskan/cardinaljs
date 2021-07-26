@@ -8,9 +8,9 @@ class Warn {
      * Create a new warn.
      * @param {Object} warn The warn object.
      * @param {Snowflake} warn.warnID The id of the warn.
-     * @param {?Snowflake} warn.warnnerID The id of the warnner.
-     * @param {?Date} warn.warnnedAt The date when the member was warnned.
-     * @param {?string} warn.warnReason The reason of the warn.
+     * @param {?Snowflake} [warn.warnnerID] The id of the warnner.
+     * @param {?Date} [warn.warnnedAt] The date when the member was warnned.
+     * @param {?string} [warn.warnReason] The reason of the warn.
      * @param {Member} member The member this warn is part of.
      * @param {Client} client The client used to connect to the API.
      * @returns The created warn.
@@ -43,7 +43,7 @@ class Warn {
 
         /**
          * The id of the warnner.
-         * @type {Snowflake}
+         * @type {?Snowflake}
          */
         this.warnnerID = warn.warnnerID ? warn.warnnerID : null;
 
@@ -71,6 +71,7 @@ class Warn {
 
     /**
      * Delete the warn.
+     * @returns {Promise<boolean>}
      */
     delete() {
         return new Promise((resolve, reject) => {

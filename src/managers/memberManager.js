@@ -1,8 +1,8 @@
 /* eslint-disable */
-const Member = require('./member');
-const Guild = require('./guild');
-const Client = require('./client');
-const APIError = require('./apiError');
+const Member = require('../structures/member');
+const Guild = require('../structures/guild');
+const Client = require('../structures/client');
+const APIError = require('../api/apiError');
 /* eslint-enable */
 
 class MemberManager {
@@ -33,6 +33,7 @@ class MemberManager {
         /**
          * The map containing all tracked members.
          * @type {Map<string, Member>}
+         * @readonly
          */
         this.cache = new Map();
     }
@@ -40,7 +41,7 @@ class MemberManager {
     /**
      * resolve returns the member if it is in the database.
      * @param {string} id Id of the guild.
-     * @returns {?Member} The resolved member.
+     * @returns {Promise<Member | undefined>} The resolved member.
      */
     async resolve(id) {
         let member = this.cache.get(id);
@@ -66,11 +67,11 @@ class MemberManager {
      * Create a new member for this guild.
      * @param {Object} member The member from the API.
      * @param {Snowflake} member.memberID The ID of the member.
-     * @param {?Date} member.joinedAt The date when member first joined the guild.
-     * @param {?number} member.left The number of time this member left the guild.
-     * @param {?number} member.xp The xp of the member.
-     * @param {?number} member.level The level of the member.
-     * @returns {Promise<Member, Error>} The member if it was created.
+     * @param {?Date} [member.joinedAt] The date when member first joined the guild.
+     * @param {number} [member.left] The number of time this member left the guild.
+     * @param {number} [member.xp] The xp of the member.
+     * @param {number} [member.level] The level of the member.
+     * @returns {Promise<Member>} The member if it was created.
      */
     create(member) {
         const memb = new Member(member, this.guild, this.client);
@@ -87,7 +88,7 @@ class MemberManager {
 
     /**
      * Reset all the members part of this guild. (whether cached or not)
-     * @returns {Promise<Guild, Error>} The guild of the members.
+     * @returns {Promise<Guild>} The guild of the members.
      */
     resetMembers() {
         return new Promise((resolve, reject) => {

@@ -1,8 +1,8 @@
 /* eslint-disable */
-const Member = require('./member');
-const Client = require('./client');
-const Warn = require('./warn');
-const APIError = require('./apiError');
+const Member = require('../structures/member');
+const Client = require('../structures/client');
+const Warn = require('../structures/warn');
+const APIError = require('../api/apiError');
 /* eslint-enable */
 
 class WarnManager {
@@ -40,7 +40,7 @@ class WarnManager {
     /**
      * resolve returns the warn if it is in the database.
      * @param {string} id Id of the warn.
-     * @returns {?Warn} The resolved warn.
+     * @returns {Promise<Warn | undefined} The resolved warn.
      */
     async resolve(id) {
         let warn = this.cache.get(id);
@@ -66,10 +66,10 @@ class WarnManager {
      * Create a new warn for this member.
      * @param {Object} warn The warn from the API.
      * @param {Snowflake} warn.warnID The ID of the warn.
-     * @param {Snowflake} warn.warnnerID The ID of the warnner.
-     * @param {?Date} warn.warnnedAt The date when the member was warnned.
-     * @param {?string} warn.warnReason The reason of the warn.
-     * @returns {Promise<Warn, Error>} The warn if it was created.
+     * @param {?Snowflake} [warn.warnnerID] The ID of the warnner.
+     * @param {?Date} [warn.warnnedAt] The date when the member was warnned.
+     * @param {?string} [warn.warnReason] The reason of the warn.
+     * @returns {Promise<Warn>} The warn if it was created.
      */
     create(warn) {
         const w = new warn(warn, this.guild, this.client);

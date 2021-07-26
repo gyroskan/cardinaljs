@@ -8,8 +8,8 @@ class Channel {
      * Create a new channel.
      * @param {Object} channel The channel object.
      * @param {Snowflake} channel.channelID The channel id.
-     * @param {?boolean} channel.ignored Wether the channel must be ignored.
-     * @param {?boolean} channel.xpBlacklisted Wether to disable xp in this channel.
+     * @param {boolean} [channel.ignored] Wether the channel must be ignored.
+     * @param {boolean} [channel.xpBlacklisted] Wether to disable xp in this channel.
      * @param {Guild} guild The guild this channel is part of.
      * @param {Client} client The client used to connect to the API.
      * @returns The created channel.
@@ -55,9 +55,8 @@ class Channel {
     }
 
     /**
-    * The ID of this channel
+    * The ID of this channel.
     * @type {Snowflake}
-    * @readonly
     */
     get id() {
         return this.channelID;
@@ -66,8 +65,8 @@ class Channel {
     /**
      * Updates the guild with new values.
      * @param {Object} data The patch values object.
-     * @param {boolean} data.ignored Wether the channel must be ignored.
-     * @param {boolean} data.xpBlacklisted Wether to disable xp in this channel.
+     * @param {boolean} [data.ignored] Wether the channel must be ignored.
+     * @param {boolean} [data.xpBlacklisted] Wether to disable xp in this channel.
      */
     edit(data) {
         return new Promise((resolve, reject) => {

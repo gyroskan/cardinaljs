@@ -5,9 +5,9 @@ const APIError = require('./apiError');
 class Api {
     /**
      * Create an instance used to make request to cardinal API.
-     * @param {string} token The token used to connect to cardinal API.
-     * @param {string} apiurl The url to cardinal API (default is last version).
-     * @param {number} maxAttempt The max attempt to connect to the API.
+     * @param {string} token - The token used to connect to cardinal API.
+     * @param {string} [apiurl=APIPATH] - The url to cardinal API (default is last version).
+     * @param {number} [maxAttempt=3] - The max attempt to connect to the API.
      */
     constructor(token, apiurl = APIPATH, maxAttempt = 3) {
         /**
@@ -31,6 +31,7 @@ class Api {
 
         /**
          * The max number of attempt to connect to the API before throwing an error.
+         * @type {number}
          * @private
          */
         this.maxAttempt = maxAttempt;
@@ -39,7 +40,7 @@ class Api {
     /**
      * Test the token to use cardinal API.
      * @description Ensure that the token is valid and the API reachable.
-     * @returns Return the token used to connect.
+     * @returns {Promise<string>} - Return the token used to connect.
      */
     async connect() {
         let attempt = 0;
@@ -77,10 +78,10 @@ class Api {
 
     /**
      * Request the cardinal API.
-     * @param {string} path The path after the base api url.
-     * @param {string} method The method (GET|POST|PATCH|DELETE).
-     * @param {string} body The body of the request.
-     * @returns {Promise} The object fetched.
+     * @param {string} path - The path after the base api url.
+     * @param {string} method - The method (GET|POST|PATCH|DELETE).
+     * @param {object} [object=null] - The body of the request.
+     * @returns {Promise<object>} - The object fetched.
      */
     async request(path, method, object = null) {
         const body = JSON.stringify(object);

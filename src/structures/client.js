@@ -1,5 +1,5 @@
-const Api = require('./api');
-const GuildManager = require('./guildManager');
+const Api = require('../api/api');
+const GuildManager = require('../managers/guildManager');
 
 class Client {
     /**

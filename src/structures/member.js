@@ -1,7 +1,7 @@
 /* eslint-disable*/
-const Api = require('./api');
-const BanManager = require('./banManager');
-const WarnManager = require('./warnManager');
+const Api = require('../api/api');
+const BanManager = require('../managers/banManager');
+const WarnManager = require('../managers/warnManager');
 const Client = require('./client');
 const Guild = require('./guild');
 /* eslint-enable*/
@@ -11,10 +11,10 @@ class Member {
      * Create a new member.
      * @param {Object} member The member from the API.
      * @param {Snowflake} member.memberID The ID of the member.
-     * @param {?Date} member.joinedAt The date when member first joined the guild.
-     * @param {?number} member.left The number of time this member left the guild.
-     * @param {?number} member.xp The xp of the member.
-     * @param {?number} member.level The level of the member.
+     * @param {?Date} [member.joinedAt] The date when member first joined the guild.
+     * @param {number} [member.left] The number of time this member left the guild.
+     * @param {number} [member.xp] The xp of the member.
+     * @param {number} [member.level] The level of the member.
      * @param {Guild} guild The guild of the member.
      * @param {Client} client The client used to connect to the API.
      * @returns {Member}
@@ -31,76 +31,71 @@ class Member {
         /**
          * The ID of this member.
          * @type {Snowflake}
-         * @readonly
          */
         this.memberID = member.memberID;
 
         /**
         * The ID of the guild the member is part of.
         * @type {Snowflake}
-        * @readonly
         */
         this.guildID = guild.guildID;
 
         /**
          * The guild the member is part of.
          * @type {Guild}
-         * @readonly
          */
         this.guild = guild;
 
         /**
          * The Date when the member first joined the guild.
          * @type {Date}
-         * @readonly
          */
         this.joinedAt = member.joinedAt ? member.joinedAt : Date.now();
 
         /**
          * The number of time this member left the guild.
          * @type {number}
-         * @readonly
          */
         this.left = member.left ? member.left : 0;
 
         /**
          * The xp of the member.
          * @type {number}
-         * @readonly
          */
         this.xp = member.xp ? member.xp : 0;
 
         /**
          * The level of the member.
          * @type {number}
-         * @readonly
          */
         this.level = member.level ? member.level : 0;
 
         /**
          * The ban manager of this member.
          * @type {BanManager}
+         * @readonly
          */
         this.bans = new BanManager(this.client, this);
 
         /**
          * The warn manager of this member.
          * @type {WarnManager}
+         * @readonly
          */
         this.warns = new WarnManager(this.client, this);
     }
 
     /**
-    * The ID of this member
+    * The ID of this member.
     * @type {Snowflake}
-    * @readonly
     */
     get id() {
         return this.memberID;
     }
 
     /**
-     * Add 1 to left property
+     * Add 1 to left property.
+     * @returns {Promise<Member>} The member after modification.
      */
     addLeft() {
         return new Promise((resolve, reject) => {
@@ -116,6 +111,7 @@ class Member {
     /**
      * Add xp to the member xp.
      * @param {number} amount The amount of xp to add.
+     * @returns {Promise<Member>} The member after modification.
      */
     addXP(amount) {
         return new Promise((resolve, reject) => {
@@ -133,6 +129,7 @@ class Member {
 
     /**
      * Delete the member.
+     * @returns {Promise<boolean>} Whether it was deleted or not.
      */
     delete() {
         return new Promise((resolve, reject) => {
@@ -144,6 +141,7 @@ class Member {
 
     /**
      * Reset all values of the member.
+     * @returns {Promise<Member>} The member after modification.
      */
     reset() {
         return new Promise((resolve, reject) => {

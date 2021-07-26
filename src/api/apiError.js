@@ -5,7 +5,7 @@ class APIError extends Error {
      * @param {number} code The http result code of the request.
      * @param {string} method The method of the request.
      * @param {string} path The path of the request.
-     * @param {string} body The body of the request.
+     * @param {?string} body The body of the request.
      */
     constructor(message, code, method, path, body) {
         super(message);
@@ -29,7 +29,7 @@ class APIError extends Error {
 
         /**
          * The body of the request
-         * @type {string}
+         * @type {?string}
          */
         this.body = body;
     }
