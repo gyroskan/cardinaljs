@@ -213,6 +213,7 @@ declare module "managers/roleManager" {
             ignored?: boolean | undefined;
             xpBlacklisted?: boolean | undefined;
         }): Promise<Role>;
+        rewards(lvl: number): Promise<Array<Role>>
     }
     import { Snowflake } from "discord-api-types";
     import Client = require("structures/client");

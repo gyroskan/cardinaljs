@@ -1,6 +1,6 @@
 {
   "name": "cardinaljs",
-  "version": "1.2.01",
+  "version": "1.2.02",
   "description": "A library to interact with Cardinal API",
   "main": "./src/index.js",
   "scripts": {
