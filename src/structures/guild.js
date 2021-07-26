@@ -48,7 +48,6 @@ class Guild {
         /**
          * The name of this guild.
          * @type {string}
-         * @readonly
          */
         this.guildName = guild.guildName;
 
@@ -151,7 +150,6 @@ class Guild {
     /**
     * The ID of this guild
     * @type {Snowflake}
-    * @readonly
     */
     get id() {
         return this.guildID;
@@ -160,7 +158,6 @@ class Guild {
     /**
      * The name of this guild.
      * @type {string}
-     * @readonly
      */
     get name() {
         return this.guildName;
@@ -182,6 +179,7 @@ class Guild {
      * @param {boolean} [data.allowModeration] Whether moderation commands are allowed or not.
      * @param {number} [data.maxWarns] The number of warns before a member get banned. (0 means never get banned from warns).
      * @param {number} [data.banTime] The number of days a ban last. (between 0 and 7).
+     * @returns {Promise<Guild>} The edited guild object.
      */
     edit(data) {
         return new Promise((resolve, reject) => {

@@ -66,7 +66,7 @@ class GuildManager {
      * @param {boolean} [guild.allowModeration] Whether moderation commands are allowed or not.
      * @param {number} [guild.maxWarns] The number of warns before a member get banned. (0 means never get banned from warns).
      * @param {number} [guild.banTime] The number of days a ban last. (between 0 and 7).
-     * @returns {Promise<Guild, error>} The created guild.
+     * @returns {Promise<Guild>} The created guild.
      */
     create(guild) {
         const g = new Guild(guild, this.client);

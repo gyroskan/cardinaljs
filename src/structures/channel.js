@@ -67,6 +67,7 @@ class Channel {
      * @param {Object} data The patch values object.
      * @param {boolean} [data.ignored] Wether the channel must be ignored.
      * @param {boolean} [data.xpBlacklisted] Wether to disable xp in this channel.
+     * @returns {Promise<Channel>} The edited channel object.
      */
     edit(data) {
         return new Promise((resolve, reject) => {
@@ -81,6 +82,7 @@ class Channel {
 
     /**
      * Delete the channel.
+     * @returns {Promise<boolean>} Whether it was deleted or not.
      */
     delete() {
         return new Promise((resolve, reject) => {

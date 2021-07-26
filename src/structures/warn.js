@@ -7,7 +7,7 @@ class Warn {
     /**
      * Create a new warn.
      * @param {Object} warn The warn object.
-     * @param {Snowflake} warn.warnID The id of the warn.
+     * @param {number} warn.warnID The id of the warn.
      * @param {?Snowflake} [warn.warnnerID] The id of the warnner.
      * @param {?Date} [warn.warnnedAt] The date when the member was warnned.
      * @param {?string} [warn.warnReason] The reason of the warn.
@@ -31,7 +31,7 @@ class Warn {
 
         /**
          * The id of the warn.
-         * @type {Snowflake}
+         * @type {number}
          */
         this.warnID = warn.warnID;
 
@@ -62,8 +62,7 @@ class Warn {
 
     /**
     * The ID of this warn
-    * @type {Snowflake}
-    * @readonly
+    * @type {number}
     */
     get id() {
         return this.warnID;

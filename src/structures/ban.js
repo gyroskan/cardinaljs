@@ -7,7 +7,7 @@ class Ban {
     /**
      * Create a new ban.
      * @param {Object} ban The ban object.
-     * @param {Snowflake} ban.banID The id of the member banned.
+     * @param {number} ban.banID The id of the member banned.
      * @param {?Snowflake} [ban.bannerID] The id of the banner.
      * @param {?Date} [ban.bannedAt] The date of the ban.
      * @param {?string} [ban.banReason] The reason of the ban.
@@ -33,7 +33,7 @@ class Ban {
 
         /**
          * The id of the ban.
-         * @type {Snowflake}
+         * @type {number}
          */
         this.banID = ban.banID;
 
@@ -45,7 +45,7 @@ class Ban {
 
         /**
          * The id of the banner.
-         * @type {Snowflake}
+         * @type {?Snowflake}
          */
         this.bannerID = ban.bannerID ? ban.bannerID : null;
 
@@ -70,8 +70,7 @@ class Ban {
 
     /**
     * The ID of this ban
-    * @type {Snowflake}
-    * @readonly
+    * @type {number}
     */
     get id() {
         return this.banID;
@@ -79,6 +78,7 @@ class Ban {
 
     /**
      * Delete the ban.
+     * @returns {Promise<boolean>} Whether it was deleted or not.
      */
     delete() {
         return new Promise((resolve, reject) => {

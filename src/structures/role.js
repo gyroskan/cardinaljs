@@ -70,7 +70,6 @@ class Role {
     /**
     * The ID of this role
     * @type {Snowflake}
-    * @readonly
     */
     get id() {
         return this.roleID;
@@ -83,6 +82,7 @@ class Role {
      * @param {number}  [data.reward] The level when this role is given as reward. (0 means never).
      * @param {boolean} [data.ignored] Wether cardinal bot ignore this role or not.
      * @param {boolean} [data.xpBlacklisted] Wether members of this role are blocked from xp leveling or not.
+     * @returns {Promise<Role>} The edited role object.
      */
     edit(data) {
         return new Promise((resolve, reject) => {
