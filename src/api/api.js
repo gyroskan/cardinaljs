@@ -84,16 +84,18 @@ class Api {
      * @returns {Promise<object>} - The object fetched.
      */
     async request(path, method, object = null) {
+        const args = {
+            method: method,
+            headers: {
+                'Content-type': 'application/json',
+                'Authorization': `Bearer ${this.token}`,
+            },
+        };
         const body = JSON.stringify(object);
+        if (method !== 'GET')
+            args.body = body;
         return new Promise((resolve, reject) => {
-            const t = fetch(`${this.apiurl}${path}`, {
-                method: method,
-                headers: {
-                    'Content-type': 'application/json',
-                    'Authorization': `Bearer ${this.token}`,
-                },
-                body: body,
-            });
+            const t = fetch(`${this.apiurl}${path}`, args);
             t.then(res => {
                 if (res.ok) {
                     if (res.headers.get('content-type').startsWith('application/json')) {

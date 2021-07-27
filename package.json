@@ -1,9 +1,12 @@
 {
   "name": "cardinaljs",
-  "version": "1.2.030",
+  "version": "1.2.031",
   "description": "A library to interact with Cardinal API",
-  "main": "./src/index.js", 
-  "files": ["src", "typing"],
+  "main": "./src/index.js",
+  "files": [
+    "src",
+    "typing"
+  ],
   "types": "./typing/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
