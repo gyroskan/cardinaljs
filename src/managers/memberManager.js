@@ -94,7 +94,7 @@ class MemberManager {
      */
     resetMembers() {
         return new Promise((resolve, reject) => {
-            this.client.api.request(`guilds/${this.guildID}/members/reset`, 'POST')
+            this.client.api.request(`/guilds/${this.guildID}/members/reset`, 'POST')
                 .then(() => {
                     this.cache.clear();
                     resolve(this.guild);

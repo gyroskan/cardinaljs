@@ -86,7 +86,7 @@ class Channel {
      */
     delete() {
         return new Promise((resolve, reject) => {
-            this.client.api.request(`/guild/${this.guildID}/channels/${this.channelID}`, 'DELETE')
+            this.client.api.request(`/guilds/${this.guildID}/channels/${this.channelID}`, 'DELETE')
                 .then(() => resolve(this.guild.channels.cache.delete(this.memberID)))
                 .catch(err => reject(err));
         });

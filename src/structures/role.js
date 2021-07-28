@@ -101,7 +101,7 @@ class Role {
      */
     delete() {
         return new Promise((resolve, reject) => {
-            this.client.api.request(`/guild/${this.guildID}/roles/${this.roleID}`, 'DELETE')
+            this.client.api.request(`/guilds/${this.guildID}/roles/${this.roleID}`, 'DELETE')
                 .then(() => resolve(this.guild.roles.cache.delete(this.memberID)))
                 .catch(err => reject(err));
         });

@@ -99,7 +99,7 @@ class Member {
      */
     addLeft() {
         return new Promise((resolve, reject) => {
-            this.client.api.request(`/guild/${this.guildID}/members/${this.memberID}`, 'PATCH', { left: this.left++ })
+            this.client.api.request(`/guilds/${this.guildID}/members/${this.memberID}`, 'PATCH', { left: this.left++ })
                 .then(m => {
                     Object.assign(this, m);
                     resolve(this);
@@ -115,7 +115,7 @@ class Member {
      */
     addXP(amount) {
         return new Promise((resolve, reject) => {
-            this.client.api.request(`/guild/${this.guildID}/members/${this.memberID}`, 'PATCH', {
+            this.client.api.request(`/guilds/${this.guildID}/members/${this.memberID}`, 'PATCH', {
                 xp: this.xp + amount,
                 level: this.level + (this.xp + amount >= getXp(this.level))
             }).then(m => {
@@ -133,7 +133,7 @@ class Member {
      */
     delete() {
         return new Promise((resolve, reject) => {
-            this.client.api.request(`/guild/${this.guildID}/members/${this.memberID}`, 'DELETE')
+            this.client.api.request(`/guilds/${this.guildID}/members/${this.memberID}`, 'DELETE')
                 .then(() => resolve(this.guild.members.cache.delete(this.memberID)))
                 .catch(err => reject(err));
         });
@@ -145,7 +145,7 @@ class Member {
      */
     reset() {
         return new Promise((resolve, reject) => {
-            this.client.api.request(`/guild/${this.guildID}/members/${this.memberID}/reset`, 'POST')
+            this.client.api.request(`/guilds/${this.guildID}/members/${this.memberID}/reset`, 'POST')
                 .then(m => {
                     Object.assign(this, m);
                     resolve(this);

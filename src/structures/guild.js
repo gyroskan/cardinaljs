@@ -198,7 +198,7 @@ class Guild {
      */
     reset() {
         return new Promise((resolve, reject) => {
-            this.client.api.request(`guilds/${this.guildID}/reset`, 'POST')
+            this.client.api.request(`/guilds/${this.guildID}/reset`, 'POST')
                 .then(guild => {
                     Object.assign(this, guild);
                     resolve(this);
