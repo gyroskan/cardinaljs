@@ -75,8 +75,10 @@ class BanManager {
      */
     create(ban) {
         const b = new Ban(ban, this.guild, this.client);
+        // eslint-disable-next-line
+        const { client, member, ...obj } = b;
         return new Promise((resolve, reject) => {
-            this.client.api.request(`/guilds/${this.member.guildID}/members/${this.memberID}/bans/`, 'POST', b)
+            this.client.api.request(`/guilds/${this.member.guildID}/members/${this.memberID}/bans/`, 'POST', obj)
                 .then(resp => {
                     Object.assign(b, resp);
                     this.cache.set(b.banID, b);

@@ -73,8 +73,10 @@ class ChannelManager {
      */
     create(channel) {
         const ch = new Channel(channel, this.guild, this.client);
+        // eslint-disable-next-line
+        const { client, guild, ...obj } = ch;
         return new Promise((resolve, reject) => {
-            this.client.api.request(`/guilds/${this.guildID}/channels/`, 'POST', ch)
+            this.client.api.request(`/guilds/${this.guildID}/channels/`, 'POST', obj)
                 .then(resp => {
                     Object.assign(ch, resp);
                     this.cache.set(ch.channelID, ch);
