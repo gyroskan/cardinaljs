@@ -75,8 +75,10 @@ class MemberManager {
      */
     create(member) {
         const memb = new Member(member, this.guild, this.client);
+        // eslint-disable-next-line
+        const { client, bans, guild, warns, ...obj } = memb;
         return new Promise((resolve, reject) => {
-            this.client.api.request(`/guilds/${this.guildID}/members/`, 'POST', memb)
+            this.client.api.request(`/guilds/${this.guildID}/members/`, 'POST', obj)
                 .then(resp => {
                     Object.assign(memb, resp);
                     this.cache.set(memb.memberID, memb);

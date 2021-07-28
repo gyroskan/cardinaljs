@@ -49,7 +49,7 @@ class Api {
             console.log('Connecting to cardinal API...');
             try {
                 attempt++;
-                const user = await this.request('/users/me');
+                const user = await this.request('/users/me', 'GET');
                 console.log(`Connected to cardinal API as ${user.username}`);
                 return this.token;
             }

@@ -72,9 +72,11 @@ class WarnManager {
      * @returns {Promise<Warn>} The warn if it was created.
      */
     create(warn) {
-        const w = new warn(warn, this.guild, this.client);
+        const w = new Warn(warn, this.guild, this.client);
+        // eslint-disable-next-line
+        const { client, member, ...obj } = w;
         return new Promise((resolve, reject) => {
-            this.client.api.request(`/guilds/${this.member.guildID}/members/${this.memberID}/warns/`, 'POST', w)
+            this.client.api.request(`/guilds/${this.member.guildID}/members/${this.memberID}/warns/`, 'POST', obj)
                 .then(resp => {
                     Object.assign(w, resp);
                     this.cache.set(w.warnID, w);

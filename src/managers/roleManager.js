@@ -74,8 +74,10 @@ class RoleManager {
      */
     create(role) {
         const rl = new Role(role, this.guild, this.client);
+        // eslint-disable-next-line
+        const { client, guild, ...obj } = rl;
         return new Promise((resolve, reject) => {
-            this.client.api.request(`/guilds/${this.guildID}/roles/`, 'POST', rl)
+            this.client.api.request(`/guilds/${this.guildID}/roles/`, 'POST', obj)
                 .then(resp => {
                     Object.assign(rl, resp);
                     this.cache.set(rl.roleID, rl);

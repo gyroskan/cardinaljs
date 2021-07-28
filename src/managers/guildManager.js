@@ -70,8 +70,10 @@ class GuildManager {
      */
     create(guild) {
         const g = new Guild(guild, this.client);
+        // eslint-disable-next-line
+        const { members, client, channels, roles, ...obj } = g;
         return new Promise((resolve, reject) => {
-            this.client.api.request('/guilds/', 'POST', g)
+            this.client.api.request('/guilds/', 'POST', obj)
                 .then(resp => {
                     Object.assign(g, resp);
                     this.cache.set(g.id, g);

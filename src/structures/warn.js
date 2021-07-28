@@ -42,6 +42,12 @@ class Warn {
         this.memberID = member.id;
 
         /**
+         * The id of the guild the member is part of.
+         * @type {Snowflake}
+         */
+        this.guildID = member.guildID;
+
+        /**
          * The id of the warnner.
          * @type {?Snowflake}
          */
