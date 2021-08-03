@@ -47,8 +47,8 @@ class WarnManager {
             this.client.api.request(`/guilds/${this.member.guildID}/members/${this.memberID}/warns/`, 'GET')
                 .then(resp => {
                     const warns = [];
-                    resp.forEach(w => {
-                        const tmp = new Warn(w, this.guild, this.client);
+                    resp?.forEach(w => {
+                        const tmp = new Warn(w, this.member, this.client);
                         warns.push(tmp);
                         this.cache.set(tmp.id, tmp);
                     });

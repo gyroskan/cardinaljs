@@ -97,7 +97,7 @@ class RoleManager {
             this.client.api.request(`/guilds/${this.guildID}/roles/?reward=${lvl}`, 'GET')
                 .then(resp => {
                     const rewards = [];
-                    resp.forEach(r => {
+                    resp?.forEach(r => {
                         const tmp = new Role(r, this.guild, this.client);
                         rewards.push(tmp);
                         this.cache.set(tmp.id, tmp);

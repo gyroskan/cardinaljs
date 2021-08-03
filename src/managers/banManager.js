@@ -48,8 +48,8 @@ class BanManager {
             this.client.api.request(`/guilds/${this.member.guildID}/members/${this.memberID}/bans/`, 'GET')
                 .then(resp => {
                     const bans = [];
-                    resp.forEach(b => {
-                        const tmp = new Ban(b, this.guild, this.client);
+                    resp?.forEach(b => {
+                        const tmp = new Ban(b, this.member, this.client);
                         bans.push(tmp);
                         this.cache.set(tmp.id, tmp);
                     });
