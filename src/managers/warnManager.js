@@ -37,6 +37,27 @@ class WarnManager {
         this.cache = new Map();
     }
 
+
+    /**
+     * Fetch the warns received by this member.
+     * @returns {Promise<Array<Warn>>} The array of warns.
+     */
+    async fetch() {
+        return new Promise((resolve, reject) => {
+            this.client.api.request(`/guilds/${this.member.guildID}/members/${this.memberID}/warns/`, 'GET')
+                .then(resp => {
+                    const warns = [];
+                    resp.forEach(w => {
+                        const tmp = new Warn(w, this.guild, this.client);
+                        warns.push(tmp);
+                        this.cache.set(tmp.id, tmp);
+                    });
+                    resolve(warns);
+                })
+                .catch(reject);
+        });
+    }
+
     /**
      * resolve returns the warn if it is in the database.
      * @param {string} id Id of the warn.

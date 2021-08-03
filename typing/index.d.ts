@@ -103,6 +103,7 @@ export class WarnManager {
     memberID: Snowflake;
     member: Member;
     cache: Map<string, Warn>;
+    fetch(): Promise<Array<Warn>>;
     resolve(id: string): Promise<Warn | undefined>;
     create(warn: {
         warnID: Snowflake;
@@ -118,6 +119,7 @@ export class BanManager {
     memberID: Snowflake;
     member: Member;
     readonly cache: Map<string, Ban>;
+    fetch(): Promise<Array<Ban>>;
     resolve(id: string): Promise<Ban | undefined>;
     create(ban: {
         banID: Snowflake;

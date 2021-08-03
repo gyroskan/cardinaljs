@@ -38,6 +38,27 @@ class BanManager {
         this.cache = new Map();
     }
 
+
+    /**
+     * Fetch the warns received by this member.
+     * @returns {Promise<Array<Ban>>} The array of warns.
+     */
+    async fetch() {
+        return new Promise((resolve, reject) => {
+            this.client.api.request(`/guilds/${this.member.guildID}/members/${this.memberID}/bans/`, 'GET')
+                .then(resp => {
+                    const bans = [];
+                    resp.forEach(b => {
+                        const tmp = new Ban(b, this.guild, this.client);
+                        bans.push(tmp);
+                        this.cache.set(tmp.id, tmp);
+                    });
+                    resolve(bans);
+                })
+                .catch(reject);
+        });
+    }
+
     /**
      * resolve returns the ban if it is in the database.
      * @param {string} id Id of the ban.
