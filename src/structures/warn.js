@@ -57,7 +57,7 @@ class Warn {
          * The date when the member was warnned.
          * @type {?Date}
          */
-        this.warnnedAt = warn.warnnedAt ? warn.warnnedAt : new Date();
+        this.warnnedAt = warn.warnnedAt ? new Date(warn.warnnedAt) : new Date();
 
         /**
          * The reason of the warn.

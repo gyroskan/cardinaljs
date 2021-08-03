@@ -30,7 +30,7 @@ export class GuildManager {
     constructor(client: Client);
     client: Client;
     readonly cache: Map<string, Guild>;
-    resolve(id: string): Promise<Guild>;
+    resolve(id: string): Promise<Guild | undefined>;
     create(guild: {
         guildID: Snowflake;
         guildName: string;

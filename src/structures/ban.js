@@ -59,7 +59,7 @@ class Ban {
          * The date when the member was banned.
          * @type {?Date}
          */
-        this.bannedAt = ban.bannedAt ? ban.bannedAt : new Date();
+        this.bannedAt = ban.bannedAt ? new Date(ban.bannedAt) : new Date();
 
         /**
          * The reason of the ban.

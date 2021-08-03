@@ -50,7 +50,7 @@ class Member {
          * The Date when the member first joined the guild.
          * @type {Date}
          */
-        this.joinedAt = member.joinedAt ? member.joinedAt : Date.now();
+        this.joinedAt = member.joinedAt ? new Date(member.joinedAt) : new Date();
 
         /**
          * The number of time this member left the guild.
