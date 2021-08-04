@@ -52,7 +52,7 @@ class Role {
          * The level when this role is given as reward. (0 means never).
          * @type {number}
          */
-        this.reward = role.reward ? role.reward : 0;
+        this.reward = role.reward != null ? role.reward : 0;
 
         /**
          * Wether cardinal bot ignore this role or not.

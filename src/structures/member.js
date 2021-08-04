@@ -56,19 +56,19 @@ class Member {
          * The number of time this member left the guild.
          * @type {number}
          */
-        this.left = member.left ? member.left : 0;
+        this.left = member.left != null ? member.left : 0;
 
         /**
          * The xp of the member.
          * @type {number}
          */
-        this.xp = member.xp ? member.xp : 0;
+        this.xp = member.xp != null ? member.xp : 0;
 
         /**
          * The level of the member.
          * @type {number}
          */
-        this.level = member.level ? member.level : 0;
+        this.level = member.level != null ? member.level : 0;
 
         /**
          * The ban manager of this member.

@@ -98,7 +98,7 @@ class Guild {
          * On which lvl does the bot send a lvl up message. (0 means never).
          * @type {number}
          */
-        this.lvlResponse = guild.lvlResponse ? guild.lvlResponse : 1;
+        this.lvlResponse = guild.lvlResponse != null ? guild.lvlResponse : 1;
 
         /**
          * The list of names of disabled commands.
@@ -116,13 +116,13 @@ class Guild {
          * The number of warns before a member get banned. (0 means never get banned from warns).
          * @type {number}
          */
-        this.maxWarns = guild.maxWarns ? guild.maxWarns : 3;
+        this.maxWarns = guild.maxWarns != null ? guild.maxWarns : 3;
 
         /**
          * The number of days a ban last. (between 0 and 7).
          * @type {number}
          */
-        this.banTime = guild.banTime ? guild.banTime : 3;
+        this.banTime = guild.banTime != null ? guild.banTime : 3;
 
         /**
          * The member manager for this guild.
