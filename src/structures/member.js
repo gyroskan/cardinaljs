@@ -117,7 +117,7 @@ class Member {
         return new Promise((resolve, reject) => {
             this.client.api.request(`/guilds/${this.guildID}/members/${this.memberID}`, 'PATCH', {
                 xp: this.xp + amount,
-                level: this.level + (this.xp + amount >= getXp(this.level))
+                level: this.level + (this.xp + amount >= getXp(this.level + 1))
             }).then(m => {
                 Object.assign(this, m);
                 resolve(this);
