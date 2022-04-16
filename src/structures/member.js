@@ -128,6 +128,44 @@ class Member {
     }
 
     /**
+     * Ban the member.
+     * @param {Object} [options] The options of the ban.
+     * @param {?string} [options.reason] The reason of the ban.
+     * @param {?Snowflake} [options.bannerID] The ID of the user who banned the member.
+     * @param {?boolean} [options.auto] Whether the ban is automatic or not (max warns reached).
+     * @returns {Promise<Member>} The member after modification.
+     */
+    ban(options) {
+        return new Promise((resolve, reject) => { 
+            this.bans.create({
+                banID : 0,
+                reason: options.reason,
+                bannerID: options.bannerID, 
+                bannedAt: Date.now(),
+                autoBan: options.auto
+            }).then(resolve(this)).catch(err => reject(err));
+        });
+    }
+
+    /**
+     * Warn the member.
+     * @param {Object} [options] The options of the warn.
+     * @param {?string} [options.reason] The reason of the warn.
+     * @param {?Snowflake} {options.warnnerID} The ID of the user who warned the member.
+     * @returns {Promise<Member>} The member after modification.
+     */
+    warn(options) {
+        return new Promise((resolve, reject) => {
+            this.warns.create({
+                warnID : 0,
+                reason: options.reason,
+                warnedAt: Date.now(),
+                warnnerID: options.warnnerID
+            }).then(resolve(this)).catch(err => reject(err));
+        });
+    }
+
+    /**
      * Delete the member.
      * @returns {Promise<boolean>} Whether it was deleted or not.
      */
