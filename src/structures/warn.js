@@ -80,7 +80,9 @@ class Warn {
      */
     delete() {
         return new Promise((resolve, reject) => {
-            this.client.api.request(`/guilds/${this.member.guildID}/members/${this.memberID}/warns/${this.warnID}`, 'DELETE')
+            this.client.api.request(
+                `/guilds/${this.member.guildID}/members/${this.memberID}/warns/${this.warnID}`,
+                'DELETE')
                 .then(() => resolve(this.member.warns.cache.delete(this.warnID)))
                 .catch(err => reject(err));
         });

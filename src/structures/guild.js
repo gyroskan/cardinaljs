@@ -22,7 +22,7 @@ class Guild {
      * @param {number} [guild.lvlResponse] On which lvl does the bot send a lvl up message. (0 means never).
      * @param {string} [guild.disabledCommands] The list of names of disabled commands.
      * @param {boolean} [guild.allowModeration] Whether moderation commands are allowed or not.
-     * @param {number} [guild.maxWarns] The number of warns before a member get banned. (0 means never get banned from warns).
+     * @param {number} [guild.maxWarns] The number of warns before a member get banned. (0 to disable).
      * @param {number} [guild.banTime] The number of days a ban last. (between 0 and 7).
      */
     constructor(guild, client) {
@@ -177,7 +177,7 @@ class Guild {
      * @param {number} [data.lvlResponse] On which lvl does the bot send a lvl up message. (0 means never).
      * @param {?string} [data.disabledCommands] The list of names of disabled commands.
      * @param {boolean} [data.allowModeration] Whether moderation commands are allowed or not.
-     * @param {number} [data.maxWarns] The number of warns before a member get banned. (0 means never get banned from warns).
+     * @param {number} [data.maxWarns] The number of warns before a member get banned. (0 to disable).
      * @param {number} [data.banTime] The number of days a ban last. (between 0 and 7).
      * @returns {Promise<Guild>} The edited guild object.
      */

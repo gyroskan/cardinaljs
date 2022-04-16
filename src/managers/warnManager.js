@@ -70,7 +70,9 @@ class WarnManager {
         }
 
         try {
-            const res = await this.client.api.request(`/guilds/${this.member.guildID}/members/${this.memberID}/warns/${id}`, 'GET');
+            const res = await this.client.api.request(
+                `/guilds/${this.member.guildID}/members/${this.memberID}/warns/${id}`,
+                'GET');
             warn = new Warn(res, this.member, this.client);
             this.cache.set(warn.warnID, warn);
             return warn;

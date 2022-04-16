@@ -88,7 +88,9 @@ class Ban {
      */
     delete() {
         return new Promise((resolve, reject) => {
-            this.client.api.request(`/guilds/${this.member.guildID}/members/${this.memberID}/bans/${this.banID}`, 'DELETE')
+            this.client.api.request(
+                `/guilds/${this.member.guildID}/members/${this.memberID}/bans/${this.banID}`,
+                'DELETE')
                 .then(() => resolve(this.member.bans.cache.delete(this.banID)))
                 .catch(err => reject(err));
         });

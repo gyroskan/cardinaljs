@@ -71,7 +71,9 @@ class BanManager {
         }
 
         try {
-            const res = await this.client.api.request(`/guilds/${this.member.guildID}/members/${this.memberID}/bans/${id}`, 'GET');
+            const res = await this.client.api.request(
+                `/guilds/${this.member.guildID}/members/${this.memberID}/bans/${id}`,
+                'GET');
             ban = new Ban(res, this.member, this.client);
             this.cache.set(ban.banID, ban);
             return ban;
@@ -87,7 +89,7 @@ class BanManager {
     /**
      * Create a new ban for this member.
      * @param {Object} ban The ban from the API.
-     * @param {Snowflake} ban.banID The ID of the ban.
+     * @param {number} ban.banID The ID of the ban.
      * @param {?Snowflake} [ban.bannerID] The ID of the banner.
      * @param {?Date} [ban.bannedAt] The date of the ban.
      * @param {?string} [ban.banReason] The reason of the ban.

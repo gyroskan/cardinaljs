@@ -64,7 +64,7 @@ class GuildManager {
      * @param {number} [guild.lvlResponse] On which lvl does the bot send a lvl up message. (0 means never).
      * @param {string} [guild.disabledCommands] The list of names of disabled commands.
      * @param {boolean} [guild.allowModeration] Whether moderation commands are allowed or not.
-     * @param {number} [guild.maxWarns] The number of warns before a member get banned. (0 means never get banned from warns).
+     * @param {number} [guild.maxWarns] The number of warns before a member get banned. (0 to disable)
      * @param {number} [guild.banTime] The number of days a ban last. (between 0 and 7).
      * @returns {Promise<Guild>} The created guild.
      */
