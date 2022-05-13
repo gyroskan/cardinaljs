@@ -40,8 +40,8 @@ class BanManager {
 
 
     /**
-     * Fetch the warns received by this member.
-     * @returns {Promise<Array<Ban>>} The array of warns.
+     * Fetch the bans received by this member.
+     * @returns {Promise<Array<Ban>>} The array of bans.
      */
     async fetch() {
         return new Promise((resolve, reject) => {
